@@ -1,16 +1,16 @@
 # ============================================================================
 # OpenSTL training environment  (GPU / CUDA 12.8)  --  VERIFIED WORKING
-# For : C:\Robot\train_openstl_congestion.py   (AMR congestion spatio-temporal prediction)
+# For : scripts/03_forecast/train.py   (AMR congestion spatio-temporal prediction)
 #
 # Recreate with:
-#     conda env create -f C:\Robot\environment.yml
+#     conda env create -f environment.yml
 #     conda activate OpenSTL
-#     python C:\Robot\train_openstl_congestion.py
+#     python scripts/03_forecast/train.py
 #
 # Versions below are the exact ones a full end-to-end run (train -> test -> viz)
 # succeeded with on an RTX 3070 (driver 591.86), Windows 11, Python 3.10.8.
 #
-# Why this differs from OpenSTL\environment.yml (each change was REQUIRED to run):
+# Why this differs from OpenSTL's own environment.yml (each change was REQUIRED):
 #   * torch cu128        : original yml resolved to a CPU build, but OpenSTL's
 #                          exp.py hardcodes accelerator='gpu'.
 #   * timm 0.9.16        : code does `from timm.layers import ...`; timm<=0.6.11 lacks it.
@@ -19,9 +19,9 @@
 #   * numpy 2.2.6 kept   : already present and compatible with all of the above.
 #
 # Also note (handled outside this file):
-#   * OpenSTL\openstl\utils\main_utils.py : the gcc/head env probe was wrapped in
-#     try/except (it is absent on Windows).
-#   * train_openstl_congestion.py sets KMP_DUPLICATE_LIB_OK=TRUE (conda OpenMP clash).
+#   * calm/forecast/OpenSTL/openstl/utils/main_utils.py : the gcc/head env probe
+#     was wrapped in try/except (it is absent on Windows).
+#   * scripts/_bootstrap.py sets KMP_DUPLICATE_LIB_OK=TRUE (conda OpenMP clash).
 # ============================================================================
 name: OpenSTL
 channels:
